@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model County {
+  id          Int     @id @default(autoincrement())
+  nriId       String
+  state       String
+  state_abb   String
+  state_fips  Int
+  county      String
+  county_type String
+  county_fips Int
+  stco_fips   Int
+  risk_score  Decimal
+  risk_rating String
+  avln_risks  Decimal
+  avln_riskr  String
+  cfld_risks  Decimal
+  cfld_riskr  String
+  cwav_risks  Decimal
+  cwav_riskr  String
+  drgt_risks  Decimal
+  drgt_riskr  String
+  erqk_risks  Decimal
+  erqk_riskr  String
+  hail_risks  Decimal
+  hail_riskr  String
+  hwav_risks  Decimal
+  hwav_riskr  String
+  hrcn_risks  Decimal
+  hrcn_riskr  String
+  istm_risks  Decimal
+  istm_riskr  String
+  lnds_risks  Decimal
+  lnds_riskr  String
+  ltng_risks  Decimal
+  ltng_riskr  String
+  rfld_risks  Decimal
+  rfld_riskr  String
+  swnd_risks  Decimal
+  swnd_riskr  String
+  trnd_risks  Decimal
+  trnd_riskr  String
+  tsun_risks  Decimal
+  tsun_riskr  String
+  vlcn_risks  Decimal
+  vlcn_riskr  String
+  wfir_risks  Decimal
+  wfir_riskr  String
+  wntw_risks  Decimal
+  wntw_riskr  String
+}
+
+model Hazard {
+  id Int @id @default(autoincrement())
+  hazard String
+  prefix String
+  service String
+  start String
+  end String
+  total_years String
+}
