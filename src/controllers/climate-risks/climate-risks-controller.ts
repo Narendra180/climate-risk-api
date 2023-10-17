@@ -10,9 +10,20 @@ const getCountyClimateRisks = async (req:Request,res:Response) => {
   const { countyName } = req.params;
   const climateRiskDataFromDb = await prisma.county.findFirst({
     where: {
-      county: countyName
+      county: countyName,
     }
   })
+
+  // const climateRiskDataFromDb = await prisma.county.groupBy({
+  //   by: {
+      
+  //   },
+  //   where: {
+  //     county: countyName
+  //   }
+  // });
+
+  // const climateRiskData = climateRiskDataFromDb;
   const climateRiskData: ClimateRiskData = {};
   
   for(let key in climateRiskDataFromDb) {
@@ -24,7 +35,6 @@ const getCountyClimateRisks = async (req:Request,res:Response) => {
       }
       if(riskValueType === "risks") { 
         const riskScore = climateRiskDataFromDb[key as keyof typeof climateRiskDataFromDb];
-        console.log(typeof riskScore);
         climateRiskData[newKey]["riskScore"] = parseFloat(Number(riskScore).toFixed(2));
       } else {
         climateRiskData[newKey]["riskRating"] = climateRiskDataFromDb[key as keyof typeof climateRiskDataFromDb];
